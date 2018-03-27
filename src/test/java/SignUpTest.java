@@ -8,6 +8,6 @@ public class SignUpTest extends BaseTest {
         Thread.sleep(2000);
         mainPage.getSignUpPage();
         SignUpPage signUpPage = PageFactory.initElements(driver, SignUpPage.class);
-        signUpPage.getNewUser(String username, String email, String password);
+        signUpPage.getNewUser(email, username, password);
     }
 }

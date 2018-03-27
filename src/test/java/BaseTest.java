@@ -1,5 +1,7 @@
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.BeforeClass;
 
@@ -24,5 +26,16 @@ public class BaseTest {
         driver.manage().window().maximize();
         driver.get("http://rozetka.com.ua");
     }
+
+    /*
+    @FindBy(xpath = "//*[@id=\"speedup-btn\"]/span")
+    private  WebElement waitIf;
+
+    public void wait() throws InterruptedException {
+        if (waitIf.isDisplayed()){
+            driver.wait(10000);
+        }
+    }
+    */
 
 }

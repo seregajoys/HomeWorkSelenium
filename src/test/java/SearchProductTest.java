@@ -7,7 +7,7 @@ public class SearchProductTest extends BaseTest {
     @Test
     public static void search() throws InterruptedException {
         MainPage mainPage = PageFactory.initElements(driver, MainPage.class);
-        mainPage.searchProduct();
+        mainPage.searchProduct(product);
         Thread.sleep(2000);
         SearchResultPage searchResultPage = PageFactory.initElements(driver, SearchResultPage.class);
         searchResultPage.openProductPage();

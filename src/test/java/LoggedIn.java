@@ -6,7 +6,7 @@ public class LoggedIn extends BaseTest {
     @Test
     public static void main () throws InterruptedException {
         MainPage mainPage = PageFactory.initElements(driver, MainPage.class);
-        mainPage.loggedIn();
+        mainPage.loggedIn(username, password);
         Thread.sleep(2000);
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+ mainPage.profileIsDisplayed());
         Assert.assertTrue(mainPage.profileIsDisplayed());
