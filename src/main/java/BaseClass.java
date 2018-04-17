@@ -5,6 +5,7 @@ import org.openqa.selenium.support.PageFactory;
 public class BaseClass {
     public static WebDriver driver;
     MainPage mainPage = PageFactory.initElements(driver, MainPage.class);
+
     public  void firstLoad(){
         driver = new ChromeDriver();
         driver.manage().window().maximize();

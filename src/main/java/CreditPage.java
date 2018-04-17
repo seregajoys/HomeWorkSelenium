@@ -1,8 +1,13 @@
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
+import java.util.Map;
+
 
 public class CreditPage {
     private WebDriver driver;
@@ -35,6 +40,10 @@ public class CreditPage {
     private WebElement creditSingleComission;
     @FindBy(xpath = "(//*[@class='rz-credit-terms-tr'])[5]/td[6]")
     private WebElement creditFirstDeposit;
+    @FindBy(xpath = "(//tr[@class='rz-credit-terms-tr rz-credit-terms-tr-heading'])[1]/td")
+    private List<WebElement> creditTerms;
+    @FindBy(xpath = "((//td[@class='rz-credit-terms-td rz-credit-terms-td-deposit'])[1]//..)[1]")
+    private List<WebElement> creditNames;
 
 
     public Boolean getCreditRules1() {
@@ -92,4 +101,14 @@ public class CreditPage {
         return creditFirstDeposit.getText();
     }
 
+    public String getValueFromTable(String packetName, String condition){
+        int i = 0;
+        for (WebElement row : creditNames){
+            i++;
+            if (row.getText().contains(packetName)){
+                return String.valueOf(driver.findElement(By.xpath("//tr[@class='rz-credit-terms-tr rz-credit-terms-tr-heading']/td[contains(text(), '"+condition+"')]")));
+            }
+        }
+        return "F";
+    }
 }

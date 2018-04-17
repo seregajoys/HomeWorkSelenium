@@ -11,7 +11,8 @@ public class ProductPage {
 
     @FindBy(xpath = "//*[@name='topurchases']")
     private WebElement buyButton;
-    @FindBy(xpath = "//*[@id=\"cart-popup\"]/div[2]/div[1]/h2")
+
+    @FindBy(xpath = "//*[@id='cart-popup']/div[2]/div[1]/h2")
     private WebElement popupAddToCart;
 
 

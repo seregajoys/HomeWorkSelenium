@@ -34,4 +34,12 @@ public class CreditPageTest extends BaseTest {
         Assert.assertEquals(creditPage.checkCreditFirstDeposit(), "от 0");
     }
 
+    @Test(priority = 3)
+    public  void check() throws InterruptedException {
+        Thread.sleep(3000);
+        CreditPage creditPage = PageFactory.initElements(driver, CreditPage.class);
+        Assert.assertEquals(creditPage.getValueFromTable("0,01% на 5 месяцев", "Льготный период"), "5");
+
+    }
+
 }

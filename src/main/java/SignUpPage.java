@@ -13,9 +13,9 @@ public class SignUpPage {
     }
 
 
-    @FindBy(xpath = "//*[@id='signup_form']/div[1]/input")
-    private WebElement userNameField;
     @FindBy(xpath = "//*[@id=\"signup_form\"]/div[2]/input")
+    private WebElement userNameField;
+    @FindBy(xpath = "//*[@id='signup_form']/div[1]/input")
     private WebElement emailFieldOnSignUp;
     @FindBy(xpath = "//*[@id=\"signup_form\"]/div[3]/input")
     private WebElement passwordField;

@@ -20,7 +20,7 @@ public class MainPage {
     private WebElement emailInput ;
     @FindBy(xpath = "(//*[@class='input-text auth-input-text'])[2]")
     private WebElement passInput ;
-    @FindBy(xpath = "//*[@name='auth_submit']")
+    @FindBy(xpath = "//*[@name='signin']")
     private WebElement signInButton;
     @FindBy(xpath = "//*[@id=\"rz-search\"]/form/div[1]/div[2]/input")
     private WebElement searchInput ;
@@ -36,6 +36,8 @@ public class MainPage {
     private WebElement sranuybanner;
     @FindBy(xpath = "//*[@id=\"drop-block\"]")
     private WebElement dropBlock;
+    @FindBy(xpath = "(//*[@name='fat_menu_link'])[1]")
+    private WebElement navigateToNotebooks;
 
 
     public MainPage setEmail(String email){
@@ -68,8 +70,7 @@ public class MainPage {
     public SignUpPage getSignUpPage() throws InterruptedException {
        signInButton.click();
        Thread.sleep(1000);
-       if (sranuybanner.isDisplayed());
-        {
+       if (sranuybanner.isDisplayed()){
             sranuybanner.click();
         }
        signUpForm.click();
@@ -95,5 +96,11 @@ public class MainPage {
     public Boolean checkCartIsEmpty(){
         return dropBlock.isDisplayed();
     }
+
+    public ComputersAndNotebooksPage getComputerAndNotebooksPage(){
+        navigateToNotebooks.click();
+        return new ComputersAndNotebooksPage(driver);
+    }
+
 
 }
