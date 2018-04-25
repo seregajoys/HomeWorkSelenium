@@ -2,6 +2,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.concurrent.TimeUnit;
 
 
 public class MainPage {
@@ -20,7 +21,7 @@ public class MainPage {
     private WebElement emailInput ;
     @FindBy(xpath = "(//*[@class='input-text auth-input-text'])[2]")
     private WebElement passInput ;
-    @FindBy(xpath = "//*[@name='signin']")
+    @FindBy(xpath = "//*[@name='auth_submit']")
     private WebElement signInButton;
     @FindBy(xpath = "//*[@id=\"rz-search\"]/form/div[1]/div[2]/input")
     private WebElement searchInput ;
@@ -40,6 +41,7 @@ public class MainPage {
     private WebElement navigateToNotebooks;
 
 
+
     public MainPage setEmail(String email){
         emailInput.sendKeys(email);
         return this;
@@ -56,9 +58,10 @@ public class MainPage {
     }
 
     public MainPage loggedIn(String email, String password){
+        signInHeader.click();
+        setEmail("seruy001@mail.ru");
+        setPass("006035");
         signInButton.click();
-        setEmail(email);
-        setPass(password);
         return this;
     }
 
@@ -68,11 +71,15 @@ public class MainPage {
     }
 
     public SignUpPage getSignUpPage() throws InterruptedException {
-       signInButton.click();
-       Thread.sleep(1000);
+       signInHeader.click();
+    /*
        if (sranuybanner.isDisplayed()){
             sranuybanner.click();
         }
+        else {
+           signUpForm.click();
+       }
+     */
        signUpForm.click();
        return new SignUpPage(driver);
     }

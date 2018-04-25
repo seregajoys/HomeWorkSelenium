@@ -1,5 +1,8 @@
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.util.concurrent.TimeUnit;
 
 public class NotebooksPageTest extends BaseTest {
 
@@ -11,13 +14,11 @@ public class NotebooksPageTest extends BaseTest {
         NotebooksPage notebooksPage = PageFactory.initElements(driver, NotebooksPage.class);
 
         mainPage.getComputerAndNotebooksPage();
-        Thread.sleep(1000);
         computersAndNotebooksPage.navigateToNotebooksPage();
-        Thread.sleep(1000);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         notebookCategoriesPage.selectFilter();
-        Thread.sleep(1000);
         notebooksPage.chekFilterIsSelected();
-        Thread.sleep(1000);
         notebooksPage.clearFilters();
+
     }
 }

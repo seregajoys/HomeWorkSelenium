@@ -5,16 +5,18 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.concurrent.TimeUnit;
+
 public class SignUpTest extends BaseTest {
     @Test
     public void signUpTest() throws InterruptedException {
         MainPage mainPage = PageFactory.initElements(driver, MainPage.class);
-        Thread.sleep(200);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         mainPage.getSignUpPage();
         SignUpPage signUpPage = PageFactory.initElements(driver, SignUpPage.class);
         signUpPage.getNewUser(email, username, password);
         ProfilePage profilePage = PageFactory.initElements(driver, ProfilePage.class);
-        Thread.sleep(1000);
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
         Assert.assertTrue(profilePage.checkConfirmEmailPresent());
 
 

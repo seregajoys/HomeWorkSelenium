@@ -1,31 +1,33 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class CreditPageTest extends BaseTest {
     @Test(priority = 1)
     public void creditRulesIsDisplayed() throws InterruptedException {
-        Thread.sleep(5000);
         MainPage mainPage = PageFactory.initElements(driver, MainPage.class);
         mainPage.navigateToCreditPage();
         CreditPage creditPage = PageFactory.initElements(driver, CreditPage.class);
-        Thread.sleep(5000);
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@class='credit-rules-list']/div[1]")));
         Assert.assertTrue(creditPage.getCreditRules1());
         Assert.assertTrue(creditPage.getCreditRules2());
         Assert.assertTrue(creditPage.getCreditRules3());
         Assert.assertTrue(creditPage.getCreditRules4());
-        Thread.sleep(1000);
         creditPage.scrollToElement();
         Assert.assertEquals(creditPage.checkCreditTermsAge(), "21-70");
     }
 
     @Test(priority = 2)
     public void checkTable() throws InterruptedException {
-        Thread.sleep(5000);
         CreditPage creditPage = PageFactory.initElements(driver, CreditPage.class);
         creditPage.checkTableTitle();
         Assert.assertEquals(creditPage.checkTableTitle(), "Условия кредитования");
-        Thread.sleep(1000);
         Assert.assertEquals(creditPage.checkCreditPackTitle(), "0,01% на 15 месяцев");
         Assert.assertEquals(creditPage.checkCreditPeriod(),"15");
         Assert.assertEquals(creditPage.checkCreditRate(), "0,01");
@@ -36,9 +38,9 @@ public class CreditPageTest extends BaseTest {
 
     @Test(priority = 3)
     public  void check() throws InterruptedException {
-        Thread.sleep(3000);
         CreditPage creditPage = PageFactory.initElements(driver, CreditPage.class);
         Assert.assertEquals(creditPage.getValueFromTable("0,01% на 5 месяцев", "Льготный период"), "5");
+        Assert.assertEquals(creditPage.getValueFromTable("Кредит с компенсацией до", "Ежемесячная"), "1,99");
 
     }
 
