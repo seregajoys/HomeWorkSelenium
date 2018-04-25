@@ -1,7 +1,11 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.BeforeClass;
+
+import java.io.File;
 
 public class BaseTest {
     public static WebDriver driver;
@@ -10,13 +14,22 @@ public class BaseTest {
     public static final String email = "homework" + System.currentTimeMillis()/100000 + "@yopmail.com";
     public static final String password = "Qwerty1";
     public static final String product = "Iphone";
+    private static ChromeDriverService service;
+    private WebDriver driver;
 
     @BeforeClass
     public  void load(){
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("http://rozetka.com.ua");
+        public static void createAndStartService() {
+            service = new ChromeDriverService.Builder()
+                    .usingDriverExecutable(new File("D:\\IdeaProjects\\HomeWorkSelenium\\chromedriver.exe"))
+                    .usingAnyFreePort()
+                    .build();
+            service.start();
 
+        }
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--start-maximized");
+        driver = new ChromeDriver(options);
     }
 }
 
